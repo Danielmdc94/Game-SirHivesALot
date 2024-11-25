@@ -24,7 +24,6 @@ public:
 	void Draw(sf::RenderWindow* l_window);
 
 protected:
-	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 	sf::IntRect m_textureRect;
 

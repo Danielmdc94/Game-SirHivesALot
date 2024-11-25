@@ -17,11 +17,6 @@ enum class WeaponType
 struct Armor
 {
 	ArmorType m_type;
-	sf::Texture m_textureHead;
-	sf::Texture m_textureTorso;
-	sf::Texture m_textureShoulders;
-	sf::Texture m_textureLegs;
-	sf::Texture m_textureFeet;
 
 	sf::Sprite m_spriteHead;
 	sf::Sprite m_spriteTorso;
@@ -35,7 +30,6 @@ struct Armor
 struct Weapon
 {
 	WeaponType m_type;
-	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 
 	float m_damage;

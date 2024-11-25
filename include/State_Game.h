@@ -22,7 +22,6 @@ public:
 private:
 	sf::RectangleShape m_rectBackground;
 
-	sf::Texture m_textureCrosshairs;
 	sf::Sprite m_spriteCrosshairs;
 };
 

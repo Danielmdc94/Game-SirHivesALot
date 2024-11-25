@@ -13,7 +13,6 @@ struct StoreItem
 	ItemType m_type;
 	int m_price;
 
-	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 	sf::Text m_text;
 	sf::FloatRect m_rect;

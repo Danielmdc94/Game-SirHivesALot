@@ -17,7 +17,6 @@ public:
 	void Draw(sf::RenderWindow* l_wind);
 
 protected:
-	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 	sf::FloatRect m_rect;
 	sf::Vector2f m_direction;

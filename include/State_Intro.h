@@ -18,7 +18,6 @@ public:
 	void Continue();
 
 private:
-	sf::Texture m_textureBackground;
 	sf::Sprite m_spriteBackground;
 	sf::Text m_textTitle;
 	sf::Text m_textContinue;
