@@ -1,0 +1,27 @@
+HOW TO PLAY:
+
+Aim your weapon with your mouse
+Get gold by killing enemies
+Buy stuff to make the killing easier
+Click on the items you want to buy, if you have enough gold
+
+Keybinds:
+Left Click - Shoot arrow (If bow equipped)
+W A S D - Move
+E - Switch weapon (If more than one)
+Esc - Pause during the game
+Tab - Open shop during game (Does not pause game and you can't move! But you can still point your spear)
+Left Shift - Sprint (Disables your weapon)
+F4 - Toggle full screen
+
+
+Items:
+
+Armor - Gives max health (Does not replenish current health!)
+Bow - Allows to shoot arrows
+Shield - Reduces dmg taken by half (If you are not using a bow, everyone knows bows take two hands!)
+Potions - Heals you a bit
+Arrows - Can be shot with a bow, maximum is 30
+
+Tested building with:
+cmake -S . -B build -G "Visual Studio 17 2022"

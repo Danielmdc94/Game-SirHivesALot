@@ -1,0 +1,26 @@
+IntroBackground Textures/Intro_bg.png
+Player Textures/Body_Character.png
+Skeleton Textures/Skeleton.png
+Coin Textures/Coin.png
+Crosshairs Textures/Crosshairs.png
+FeetHeavy Textures/Feet_Heavy.png
+FeetLight Textures/Feet_Light.png
+HeadHeavy Textures/Head Heavy.png
+HeadLight Textures/Head_Light.png
+HeadMedium Textures/Head_Medium.png
+HeadNone Textures/Head_None.png
+HealthBar Textures/Health_Bar.png
+HealthFrame Textures/Health_Frame.png
+ItemPotion Textures/Item_Potion.png
+LegsHeavy Textures/Legs_Heavy.png
+LegsLight Textures/Legs_Light.png
+ShouldersHeavy Textures/Shoulders_Heavy.png
+ShouldersLight Textures/Shoulders_Light.png
+TorsoHeavy Textures/Torso_Heavy.png
+TorsoLight Textures/Torso_Light.png
+TorsoMedium Textures/Torso_Medium.png
+TorsoNone Textures/Torso_None.png
+WeaponArrow Textures/Weapon_Arrow.png
+WeaponBow Textures/Weapon_Bow.png
+WeaponShield Textures/Weapon_Shield.png
+WeaponSpear Textures/Weapon_Spear.png
