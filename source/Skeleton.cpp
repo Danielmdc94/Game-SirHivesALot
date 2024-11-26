@@ -21,6 +21,10 @@ void Skeleton::Load()
 {
 	sf::Rect viewSpace = m_entityManager->GetContext()->m_window->GetViewSpace();
 	TextureManager* textureManager = m_entityManager->GetContext()->m_textureManager;
+	AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
+
+	audioManager->RequireResource("SkeletonDeathFX");
+	audioManager->GetResource("SkeletonDeathFX")->setVolume(10);
 
 	int screenWidth = m_entityManager->GetContext()->m_window->GetWindowSize().x;
 	int screenHeight = m_entityManager->GetContext()->m_window->GetWindowSize().y;
@@ -81,6 +85,8 @@ void Skeleton::Update(float l_deltaTime)
 
 	if (m_boxCollider.collidesWith(player->GetSpearCollider()))
 	{
+		AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
+		audioManager->GetResource("SkeletonDeathFX")->play();
 		setIsKilled(true);
 		MarkForDeletion();
 		player->SetGold(player->GetGold() + 1);
@@ -92,6 +98,8 @@ void Skeleton::Update(float l_deltaTime)
 		Rectangle arrowRect = arrow->GetBoxCollider();
 		if (m_boxCollider.collidesWith(arrowRect))
 		{
+			AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
+			audioManager->GetResource("SkeletonDeathFX")->play();
 			player->SetGold(player->GetGold() + 1);
 			setIsKilled(true);
 			MarkForDeletion();
@@ -102,6 +110,7 @@ void Skeleton::Update(float l_deltaTime)
 
 	if (m_boxCollider.collidesWith(player->GetBoxCollider()))
 	{
+		player->TriggerFlash(0.1f);
 		if (player->GetHasShield())
 			player->SetHitpoints(player->GetHitPoints() - 20);
 		else

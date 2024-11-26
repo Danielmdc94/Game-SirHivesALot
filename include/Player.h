@@ -80,7 +80,12 @@ public:
 	void BuyShield(int l_price);
 	void BuyPotion(int l_price);
 
+	void TriggerFlash(float duration);
+
 private:
+
+	bool m_isFlashing;
+	sf::Clock m_flashTimer;
 
 	Equiped m_currentEquiped;
 

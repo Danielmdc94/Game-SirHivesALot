@@ -18,6 +18,10 @@ void Player::Load()
 {
 	sf::Rect viewSpace = m_entityManager->GetContext()->m_window->GetViewSpace();
 	TextureManager* textureManager = m_entityManager->GetContext()->m_textureManager;
+	AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
+
+	audioManager->RequireResource("HurtFX");
+	audioManager->GetResource("HurtFX")->setVolume(20);
 
 	m_type = EntityType::Player;
 	m_name = "Player";
@@ -174,7 +178,7 @@ void Player::Load()
 	m_hitPoints = m_maxHitPoints;
 	m_arrows = 0;
 
-
+	m_isFlashing = false;
 	m_moveDown = false;
 	m_moveLeft = false;
 	m_moveRight = false;
@@ -265,7 +269,20 @@ void Player::Update(float l_deltaTime)
 
 void Player::Draw(sf::RenderWindow* l_window)
 {
-	Character::Draw(l_window);
+	if (m_isFlashing)
+	{
+		if (m_flashTimer.getElapsedTime().asSeconds() < 0.1f)
+		{
+			sf::Color flashColor(255, 10, 10, 255);
+			m_sprite.setColor(flashColor);
+			l_window->draw(m_sprite);
+			m_sprite.setColor(sf::Color::White);
+		}
+		else
+			m_isFlashing = false;
+	}
+	else
+		Character::Draw(l_window);
 	DrawEquiped();
 }
 
@@ -389,6 +406,15 @@ void Player::BuyPotion(int l_price)
 		}
 	}
 }
+
+void Player::TriggerFlash(float duration)
+{
+	AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
+
+	audioManager->GetResource("HurtFX")->play();
+	m_isFlashing = true;
+	m_flashTimer.restart();
+};
 
 void Player::SetGold(int l_gold)
 {
