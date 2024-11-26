@@ -7,10 +7,11 @@ void State_Store::OnCreate()
 	SetTranscendent(true);
 	sf::Vector2u windowSize = m_stateManager->GetContext()->m_window->GetRenderWindow()->getSize();
 	TextureManager* textureManager = m_stateManager->GetContext()->m_textureManager;
+	FontManager* fontManager = m_stateManager->GetContext()->m_fontManager;
 
-	m_font.loadFromFile(Utils::GetResourceDirectory() + ("Fonts/chary___.ttf"));
+	fontManager->RequireResource("MainFont");
 
-	m_textTitle.setFont(m_font);
+	m_textTitle.setFont(*fontManager->GetResource("MainFont"));
 	m_textTitle.setString(sf::String("Store"));
 	m_textTitle.setCharacterSize(64);
 	m_textTitle.setStyle(sf::Text::Bold);
@@ -38,7 +39,7 @@ void State_Store::OnCreate()
 	m_bowItem.m_sprite.setOrigin(textureManager->GetResource("WeaponBow")->getSize().x / 2.0f, textureManager->GetResource("WeaponBow")->getSize().y / 2.0f);
 	m_bowItem.m_sprite.setScale(1.5, 1.5);
 	
-	m_bowItem.m_text.setFont(m_font);
+	m_bowItem.m_text.setFont(*fontManager->GetResource("MainFont"));
 	m_bowItem.m_text.setString("Bow: " + std::to_string(m_bowItem.m_price) + " Gold");
 	m_bowItem.m_text.setCharacterSize(32);
 	m_bowItem.m_text.setOutlineColor(sf::Color::Black);
@@ -61,7 +62,7 @@ void State_Store::OnCreate()
 	m_armorItem.m_sprite.setOrigin(m_armorItem.m_sprite.getTextureRect().width / 2.0f, m_armorItem.m_sprite.getTextureRect().height / 2.0f);
 	m_armorItem.m_sprite.setScale(1.5, 1.5);
 
-	m_armorItem.m_text.setFont(m_font);
+	m_armorItem.m_text.setFont(*fontManager->GetResource("MainFont"));
 	m_armorItem.m_text.setString("Armor: " + std::to_string(m_armorItem.m_price) + " Gold");
 	m_armorItem.m_text.setCharacterSize(32);
 	m_armorItem.m_text.setOutlineColor(sf::Color::Black);
@@ -84,7 +85,7 @@ void State_Store::OnCreate()
 	m_shieldItem.m_sprite.setOrigin(m_shieldItem.m_sprite.getTextureRect().width / 2.0f, m_shieldItem.m_sprite.getTextureRect().height / 2.0f);
 	m_shieldItem.m_sprite.setScale(2, 2);
 
-	m_shieldItem.m_text.setFont(m_font);
+	m_shieldItem.m_text.setFont(*fontManager->GetResource("MainFont"));
 	m_shieldItem.m_text.setString("Shield: " + std::to_string(m_shieldItem.m_price) + " Gold");
 	m_shieldItem.m_text.setCharacterSize(32);
 	m_shieldItem.m_text.setOutlineColor(sf::Color::Black);
@@ -106,7 +107,7 @@ void State_Store::OnCreate()
 	m_arrowItem.m_sprite.setOrigin(textureManager->GetResource("WeaponArrow")->getSize().x / 2.0f, textureManager->GetResource("WeaponArrow")->getSize().y / 2.0f);
 	m_arrowItem.m_sprite.setScale(1.5, 1.5);
 
-	m_arrowItem.m_text.setFont(m_font);
+	m_arrowItem.m_text.setFont(*fontManager->GetResource("MainFont"));
 	m_arrowItem.m_text.setString("10 Arrows: " + std::to_string(m_arrowItem.m_price) + " Gold");
 	m_arrowItem.m_text.setCharacterSize(32);
 	m_arrowItem.m_text.setOutlineColor(sf::Color::Black);
@@ -128,7 +129,7 @@ void State_Store::OnCreate()
 	m_potionItem.m_sprite.setOrigin(textureManager->GetResource("ItemPotion")->getSize().x / 2.0f, textureManager->GetResource("ItemPotion")->getSize().y / 2.0f);
 	m_potionItem.m_sprite.setScale(0.2, 0.2);
 
-	m_potionItem.m_text.setFont(m_font);
+	m_potionItem.m_text.setFont(*fontManager->GetResource("MainFont"));
 	m_potionItem.m_text.setString("Potion: " + std::to_string(m_potionItem.m_price) + " Gold");
 	m_potionItem.m_text.setCharacterSize(32);
 	m_potionItem.m_text.setOutlineColor(sf::Color::Black);

@@ -38,6 +38,7 @@ private:
 	EventManager m_eventManager;
 	TextureManager m_textureManager;
 	AudioManager m_audioManager;
+	FontManager m_fontManager;
 	EntityManager m_entityManager;
 	HUDManager m_hudManager;
 

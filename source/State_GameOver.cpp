@@ -7,10 +7,11 @@ void State_GameOver::OnCreate()
 	m_type = StateType::GameOver;
 	SetTransparent(true);
 	sf::Vector2u windowSize = m_stateManager->GetContext()->m_window->GetRenderWindow()->getSize();
+	FontManager* fontManager = m_stateManager->GetContext()->m_fontManager;
 
-	m_font.loadFromFile(Utils::GetResourceDirectory() + ("Fonts/chary___.ttf"));
+	fontManager->RequireResource("MainFont");
 
-	m_textTitle.setFont(m_font);
+	m_textTitle.setFont(*fontManager->GetResource("MainFont"));
 	m_textTitle.setString(sf::String("GameOver"));
 	m_textTitle.setCharacterSize(124);
 	m_textTitle.setStyle(sf::Text::Bold);
@@ -21,7 +22,7 @@ void State_GameOver::OnCreate()
 	m_textTitle.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 	m_textTitle.setPosition(windowSize.x / 2.0f, windowSize.y / 4.0f);
 
-	m_textContinue.setFont(m_font);
+	m_textContinue.setFont(*fontManager->GetResource("MainFont"));
 	m_textContinue.setString(sf::String("Press SPACE to restart"));
 	m_textContinue.setCharacterSize(32);
 	m_textContinue.setOutlineColor(sf::Color::Black);

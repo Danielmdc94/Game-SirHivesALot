@@ -15,14 +15,15 @@ void HUDManager::CreateHUD()
 {
 	sf::Vector2u windowSize = GetContext()->m_window->GetRenderWindow()->getSize();
 	TextureManager* textureManager = GetContext()->m_textureManager;
+	FontManager* fontManager = GetContext()->m_fontManager;
 
-	m_font.loadFromFile(Utils::GetResourceDirectory() + ("Fonts/chary___.ttf"));
+	fontManager->RequireResource("MainFont");
 
 	textureManager->RequireResource("WeaponArrow");
 	m_arrowSprite.setTexture(*textureManager->GetResource("WeaponArrow"));
 	m_arrowSprite.setPosition(32, windowSize.y - 230);
 
-	m_arrowText.setFont(m_font);
+	m_arrowText.setFont(*fontManager->GetResource("MainFont"));
 	m_arrowText.setString(sf::String("0"));
 	m_arrowText.setCharacterSize(88);
 	m_arrowText.setOutlineColor(sf::Color::Black);
@@ -34,7 +35,7 @@ void HUDManager::CreateHUD()
 	m_coinSprite.setScale(0.64f, 0.64f);
 	m_coinSprite.setPosition(32, windowSize.y - 192);
 
-	m_coinText.setFont(m_font);
+	m_coinText.setFont(*fontManager->GetResource("MainFont"));
 	m_coinText.setString(sf::String("0"));
 	m_coinText.setCharacterSize(88);
 	m_coinText.setColor(sf::Color(225, 175, 50));
@@ -51,7 +52,7 @@ void HUDManager::CreateHUD()
 	m_healthBarSprite.setTexture(*textureManager->GetResource("HealthBar"));
 	m_healthBarSprite.setPosition(m_healthFrameSprite.getPosition() + sf::Vector2f(14 * 4, 0));
 	m_healthBarSprite.setScale(4.f, 4.f);
-	m_healthBarRect = sf::IntRect(0, 0, textureManager->GetResource("HealthBar")->getSize().x, textureManager->GetResource("HealthBar")->getSize().y); // m_healthBarSprite.getTextureRect();
+	m_healthBarRect = sf::IntRect(0, 0, textureManager->GetResource("HealthBar")->getSize().x, textureManager->GetResource("HealthBar")->getSize().y);
 }
 
 void HUDManager::Update(float l_deltaTime)
