@@ -5,13 +5,20 @@ void State_Intro::OnCreate()
 	m_type = StateType::Intro;
 	sf::Vector2u windowSize = m_stateManager->GetContext()->m_window->GetRenderWindow()->getSize();
 	TextureManager* textureManager = m_stateManager->GetContext()->m_textureManager;
+	AudioManager* audioManager = m_stateManager->GetContext()->m_audioManager;
+
+
+	audioManager->RequireResource("MainTheme");
+	audioManager->GetResource("MainTheme")->setVolume(10);
+	audioManager->GetResource("MainTheme")->setLoop(true);
+	audioManager->GetResource("MainTheme")->play();
 
 	textureManager->RequireResource("IntroBackground");
 	m_spriteBackground.setTexture(*textureManager->GetResource("IntroBackground"));
 	m_spriteBackground.setOrigin(textureManager->GetResource("IntroBackground")->getSize().x / 2.0f, textureManager->GetResource("IntroBackground")->getSize().y / 2.0f);
 	m_spriteBackground.setPosition(windowSize.x / 2.0f, windowSize.y / 2.0f);
 
-	m_font.loadFromFile(Utils::GetResourcesDirectory() + ("Fonts/chary___.ttf"));
+	m_font.loadFromFile(Utils::GetResourceDirectory() + ("Fonts/chary___.ttf"));
 
 	m_textTitle.setFont(m_font);
 	m_textTitle.setString(sf::String("Sir Hives-a-lot"));

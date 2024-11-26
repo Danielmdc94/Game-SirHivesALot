@@ -16,7 +16,7 @@ void HUDManager::CreateHUD()
 	sf::Vector2u windowSize = GetContext()->m_window->GetRenderWindow()->getSize();
 	TextureManager* textureManager = GetContext()->m_textureManager;
 
-	m_font.loadFromFile(Utils::GetResourcesDirectory() + ("Fonts/chary___.ttf"));
+	m_font.loadFromFile(Utils::GetResourceDirectory() + ("Fonts/chary___.ttf"));
 
 	textureManager->RequireResource("WeaponArrow");
 	m_arrowSprite.setTexture(*textureManager->GetResource("WeaponArrow"));

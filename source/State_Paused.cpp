@@ -6,7 +6,7 @@ void State_Paused::OnCreate()
 	SetTransparent(true);
 	sf::Vector2u windowSize = m_stateManager->GetContext()->m_window->GetRenderWindow()->getSize();
 
-	m_font.loadFromFile(Utils::GetResourcesDirectory() + ("Fonts/chary___.ttf"));
+	m_font.loadFromFile(Utils::GetResourceDirectory() + ("Fonts/chary___.ttf"));
 
 	m_textTitle.setFont(m_font);
 	m_textTitle.setString(sf::String("Paused"));

@@ -31,17 +31,15 @@ public:
 	void RestartClock() { m_elapsed = m_clock.restart(); };
 
 private:
-	void PlayBackgroundMusic();
 
 	SharedContext m_context;
 	Window m_window;
 	StateManager m_stateManager;
 	EventManager m_eventManager;
 	TextureManager m_textureManager;
+	AudioManager m_audioManager;
 	EntityManager m_entityManager;
 	HUDManager m_hudManager;
-
-	sf::Music m_mainTheme;
 
 	sf::Clock m_clock;
 	sf::Time m_elapsed;

@@ -77,6 +77,7 @@ private:
 		auto itr = m_resources.find(l_id);
 		return (itr != m_resources.end() ? &itr->second : nullptr);
 	}
+
 	bool Unload(const std::string& l_id)
 	{
 		auto itr = m_resources.find(l_id);
@@ -90,7 +91,7 @@ private:
 	void LoadPaths(const std::string& l_pathFile)
 	{
 		std::ifstream paths;
-		paths.open(Utils::GetResourcesDirectory() + l_pathFile);
+		paths.open(Utils::GetResourceDirectory() + l_pathFile);
 		if (paths.is_open())
 		{
 			std::string line;
