@@ -27,8 +27,10 @@ source_group("include" FILES ${HEADERS})
 source_group("assets" FILES ${ASSETS})
 
 add_executable(${TARGET_NAME} MACOSX_BUNDLE ${SOURCES} ${HEADERS})
-target_link_libraries(${TARGET_NAME} sfml-audio sfml-graphics sfml-window sfml-system)
+target_link_libraries(${TARGET_NAME} PRIVATE sfml-audio sfml-graphics sfml-window sfml-system Shlwapi)
+
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Sir-Hives-a-Lot)
+
 if(APPLE)
     file(GLOB RESOURCE_FILES "assets")
     set_source_files_properties("${RESOURCE_FILES}" PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
