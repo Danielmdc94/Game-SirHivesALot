@@ -3,7 +3,7 @@
 #include "Character.h"
 #include "Player.h"
 #include "Arrow.h"
-#include "Vampire.h"
+#include "Skeleton.h"
 
 struct SharedContext;
 
@@ -18,13 +18,13 @@ public:
 
 	Player* GetPlayer();
 	std::vector<std::unique_ptr<Arrow>>& GetArrows();
-	std::vector<std::unique_ptr<Vampire>>& GetVampires();
+	std::vector<std::unique_ptr<Skeleton>>& GetSkeletons();
 
 	void CreateEntity(const EntityType& l_type);
 	void ClearEntities();
 
-	void VampireSpawner(float l_deltaTime);
-	void ResetVampireSpawner();
+	void SkeletonSpawner(float l_deltaTime);
+	void ResetSkeletonSpawner();
 
 	SharedContext* GetContext();
 
@@ -34,12 +34,12 @@ private:
 
 	std::vector<std::unique_ptr<Entity>> m_entities;
 	std::vector<std::unique_ptr<Arrow>> m_arrows;
-	std::vector<std::unique_ptr<Vampire>> m_vampires;
+	std::vector<std::unique_ptr<Skeleton>> m_skeletons;
 
 	Player* m_player;
 
-	float m_vampireCooldown;
-	float m_nextVampireCooldown;
+	float m_skeletonCooldown;
+	float m_nextSkeletonCooldown;
 	int m_spawnCount;
 	int m_spawnWave;
 };

@@ -2,11 +2,11 @@
 
 #include "../include/Character.h"
 
-class Vampire : public Character
+class Skeleton : public Character
 {
 public:
-    Vampire(EntityManager* l_entityManager);
-    ~Vampire();
+    Skeleton(EntityManager* l_entityManager);
+    ~Skeleton();
 
     void Load();
 

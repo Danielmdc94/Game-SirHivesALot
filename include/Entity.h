@@ -4,7 +4,7 @@
 
 #include "Rectangle.h"
 
-enum class EntityType { Base, Player, Arrow, Vampire};
+enum class EntityType { Base, Player, Arrow, Skeleton};
 
 enum class EntityState { Idle, Moving };
 

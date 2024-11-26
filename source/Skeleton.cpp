@@ -1,4 +1,4 @@
-#include "../include/Vampire.h"
+#include "../include/Skeleton.h"
 #include "../include/EntityManager.h"
 #include "../include/SharedContext.h"
 
@@ -7,17 +7,17 @@
 #include <iostream>
 
 
-Vampire::Vampire(EntityManager* l_entityManager) : Character(l_entityManager)
+Skeleton::Skeleton(EntityManager* l_entityManager) : Character(l_entityManager)
 {
 	Load();
 }
 
-Vampire::~Vampire()
+Skeleton::~Skeleton()
 {
 
 }
 
-void Vampire::Load()
+void Skeleton::Load()
 {
 	sf::Rect viewSpace = m_entityManager->GetContext()->m_window->GetViewSpace();
 	TextureManager* textureManager = m_entityManager->GetContext()->m_textureManager;
@@ -56,8 +56,8 @@ void Vampire::Load()
 	sf::Vector2f spawnPosition(randomXPos, randomYPos);
 
 
-	m_type = EntityType::Vampire;
-	m_name = "Vampire";
+	m_type = EntityType::Skeleton;
+	m_name = "Skeleton";
 
 	m_position = spawnPosition;
 	m_state = EntityState::Moving;
@@ -72,7 +72,7 @@ void Vampire::Load()
 	m_sprite.setPosition(m_position);
 }
 
-void Vampire::Update(float l_deltaTime)
+void Skeleton::Update(float l_deltaTime)
 {
 	if (m_isKilled)
 		return;
@@ -123,7 +123,7 @@ void Vampire::Update(float l_deltaTime)
 	Character::Update(l_deltaTime);
 }
 
-void Vampire::Draw(sf::RenderWindow* l_window)
+void Skeleton::Draw(sf::RenderWindow* l_window)
 {
 	Character::Draw(l_window);
 }

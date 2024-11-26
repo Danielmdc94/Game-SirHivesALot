@@ -5,7 +5,7 @@
 
 EntityManager::EntityManager(SharedContext* context) : m_context(context)
 {
-	ResetVampireSpawner();
+	ResetSkeletonSpawner();
 }
 
 EntityManager::~EntityManager()
@@ -15,7 +15,7 @@ EntityManager::~EntityManager()
 
 void EntityManager::Update(float l_deltaTime)
 {
-	VampireSpawner(l_deltaTime);
+	SkeletonSpawner(l_deltaTime);
 
 	for (const auto& entity : m_entities)
 	{
@@ -27,9 +27,9 @@ void EntityManager::Update(float l_deltaTime)
 		arrow->Update(l_deltaTime);
 	}
 
-	for (const auto& vampire : m_vampires)
+	for (const auto& skeleton : m_skeletons)
 	{
-		vampire->Update(l_deltaTime);
+		skeleton->Update(l_deltaTime);
 	}
 
 	std::erase_if(m_entities, [](const std::unique_ptr<Entity>& entity)
@@ -40,9 +40,9 @@ void EntityManager::Update(float l_deltaTime)
 		{
 			return arrow->IsMarkedForDeletion();
 		});
-	std::erase_if(m_vampires, [](const std::unique_ptr<Vampire>& vampire)
+	std::erase_if(m_skeletons, [](const std::unique_ptr<Skeleton>& skeleton)
 		{
-			return vampire->IsMarkedForDeletion();
+			return skeleton->IsMarkedForDeletion();
 		});
 }
 
@@ -52,9 +52,9 @@ void EntityManager::Draw()
 	{
 		entity->Draw(GetContext()->m_window->GetRenderWindow());
 	}
-	for (const auto& vampire : m_vampires)
+	for (const auto& skeleton : m_skeletons)
 	{
-		vampire->Draw(GetContext()->m_window->GetRenderWindow());
+		skeleton->Draw(GetContext()->m_window->GetRenderWindow());
 	}
 	for (const auto& arrow : m_arrows)
 	{
@@ -72,9 +72,9 @@ std::vector<std::unique_ptr<Arrow>>& EntityManager::GetArrows()
 	return m_arrows;
 }
 
-std::vector<std::unique_ptr<Vampire>>& EntityManager::GetVampires()
+std::vector<std::unique_ptr<Skeleton>>& EntityManager::GetSkeletons()
 {
-	return m_vampires;
+	return m_skeletons;
 }
 
 void EntityManager::CreateEntity(const EntityType& l_type)
@@ -91,10 +91,10 @@ void EntityManager::CreateEntity(const EntityType& l_type)
 		m_arrows.push_back(std::move(arrow));
 		return;
 	}
-	else if (l_type == EntityType::Vampire)
+	else if (l_type == EntityType::Skeleton)
 	{
-		auto vampire = std::make_unique<Vampire>(this);
-		m_vampires.push_back(std::move(vampire));
+		auto skeleton = std::make_unique<Skeleton>(this);
+		m_skeletons.push_back(std::move(skeleton));
 		return;
 	}
 	else
@@ -107,39 +107,39 @@ void EntityManager::ClearEntities()
 {
 	m_entities.clear();
 	m_arrows.clear();
-	m_vampires.clear();
+	m_skeletons.clear();
 }
 
-void EntityManager::VampireSpawner(float l_deltaTime)
+void EntityManager::SkeletonSpawner(float l_deltaTime)
 {
-	if (m_vampireCooldown > 0.0f)
+	if (m_skeletonCooldown > 0.0f)
 	{
-		m_vampireCooldown -= l_deltaTime;
+		m_skeletonCooldown -= l_deltaTime;
 		return;
 	}
 
-	CreateEntity(EntityType::Vampire);
+	CreateEntity(EntityType::Skeleton);
 
 	m_spawnCount++;
-	if (m_spawnCount % (5 * m_spawnWave) == 0 && m_nextVampireCooldown > 0.2)
+	if (m_spawnCount % (5 * m_spawnWave) == 0 && m_nextSkeletonCooldown > 0.2)
 	{
-		if (m_nextVampireCooldown > 2.f)
-			m_nextVampireCooldown -= 0.5f;
-		else if (m_nextVampireCooldown > 1.f)
-			m_nextVampireCooldown -= 0.05f;
-		else if (m_nextVampireCooldown > 0.2f)
-			m_nextVampireCooldown -= 0.01f;
+		if (m_nextSkeletonCooldown > 2.f)
+			m_nextSkeletonCooldown -= 0.5f;
+		else if (m_nextSkeletonCooldown > 1.f)
+			m_nextSkeletonCooldown -= 0.05f;
+		else if (m_nextSkeletonCooldown > 0.2f)
+			m_nextSkeletonCooldown -= 0.01f;
 		else
-			m_nextVampireCooldown = 0.2f;
+			m_nextSkeletonCooldown = 0.2f;
 		m_spawnWave++;
 	}
-	m_vampireCooldown = m_nextVampireCooldown;
+	m_skeletonCooldown = m_nextSkeletonCooldown;
 }
 
-void EntityManager::ResetVampireSpawner()
+void EntityManager::ResetSkeletonSpawner()
 {
-	m_vampireCooldown = 0.0f;
-	m_nextVampireCooldown = 2.5f;
+	m_skeletonCooldown = 0.0f;
+	m_nextSkeletonCooldown = 2.5f;
 	m_spawnCount = 0;
 	m_spawnWave = 1;
 }
