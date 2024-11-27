@@ -80,9 +80,10 @@ void Skeleton::Load()
 
 void Skeleton::Update(float l_deltaTime)
 {
-	if (m_isKilled && !m_isHurt)
+	if (m_isKilled)
 	{
-		MarkForDeletion();
+		if (!m_isHurt)
+			MarkForDeletion();
 		return;
 	}
 
@@ -90,8 +91,6 @@ void Skeleton::Update(float l_deltaTime)
 
 	if (m_boxCollider.collidesWith(player->GetSpearCollider()) && !m_isKilled)
 	{
-		AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
-		audioManager->GetResource("SkeletonDeathFX")->play();
 		TakeDamage(40);
 		player->SetGold(player->GetGold() + 1);
 		return;
@@ -102,12 +101,11 @@ void Skeleton::Update(float l_deltaTime)
 		Rectangle arrowRect = arrow->GetBoxCollider();
 		if (m_boxCollider.collidesWith(arrowRect) && !m_isKilled)
 		{
-			AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
-			audioManager->GetResource("SkeletonDeathFX")->play();
 			player->SetGold(player->GetGold() + 1);
 			TakeDamage(40);
 			arrow->MarkForDeletion();
 			break;
+			return;
 		}
 	}
 
@@ -115,6 +113,7 @@ void Skeleton::Update(float l_deltaTime)
 	{
 		player->TakeDamage(40);
 		TakeDamage(40);
+		return;
 	}
 
 	sf::Vector2f playerPosition = player->GetPosition();
