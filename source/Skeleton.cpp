@@ -65,6 +65,8 @@ void Skeleton::Load()
 
 	m_position = spawnPosition;
 	m_state = EntityState::Moving;
+	m_maxHitPoints = 20;
+	m_hitPoints = m_maxHitPoints;
 
 	SetSize(64, 64);
 	m_textureRect = sf::IntRect(0, m_size.y * 2, m_size.x, m_size.y);
@@ -78,17 +80,19 @@ void Skeleton::Load()
 
 void Skeleton::Update(float l_deltaTime)
 {
-	if (m_isKilled)
+	if (m_isKilled && !m_isHurt)
+	{
+		MarkForDeletion();
 		return;
+	}
 
 	Player* player = m_entityManager->GetPlayer();
 
-	if (m_boxCollider.collidesWith(player->GetSpearCollider()))
+	if (m_boxCollider.collidesWith(player->GetSpearCollider()) && !m_isKilled)
 	{
 		AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
 		audioManager->GetResource("SkeletonDeathFX")->play();
-		SetIsKilled(true);
-		MarkForDeletion();
+		TakeDamage(40);
 		player->SetGold(player->GetGold() + 1);
 		return;
 	}
@@ -96,24 +100,22 @@ void Skeleton::Update(float l_deltaTime)
 	for (const auto& arrow : m_entityManager->GetArrows())
 	{
 		Rectangle arrowRect = arrow->GetBoxCollider();
-		if (m_boxCollider.collidesWith(arrowRect))
+		if (m_boxCollider.collidesWith(arrowRect) && !m_isKilled)
 		{
 			AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
 			audioManager->GetResource("SkeletonDeathFX")->play();
 			player->SetGold(player->GetGold() + 1);
-			SetIsKilled(true);
-			MarkForDeletion();
+			TakeDamage(40);
 			arrow->MarkForDeletion();
 			break;
 		}
 	}
 
-	if (m_boxCollider.collidesWith(player->GetBoxCollider()))
+	if (m_boxCollider.collidesWith(player->GetBoxCollider()) && !m_isKilled)
 	{
 		player->TakeDamage(40);
-		SetIsKilled(true);
-		MarkForDeletion();
-	}	
+		TakeDamage(40);
+	}
 
 	sf::Vector2f playerPosition = player->GetPosition();
 	sf::Vector2f direction = playerPosition - m_position;
@@ -131,4 +133,16 @@ void Skeleton::Update(float l_deltaTime)
 void Skeleton::Draw(sf::RenderWindow* l_window)
 {
 	Character::Draw(l_window);
+}
+
+void Skeleton::TakeDamage(int l_damage)
+{
+	if (!Character::TakeDamage(l_damage))
+		return;
+	if (m_hitPoints <= 0)
+		SetIsKilled(true);
+
+	AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
+
+	audioManager->GetResource("SkeletonDeathFX")->play();
 }

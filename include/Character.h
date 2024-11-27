@@ -23,10 +23,16 @@ public:
 	void Update(float l_deltaTime);
 	void Draw(sf::RenderWindow* l_window);
 
+	bool TakeDamage(int l_damage);
+	void FlashSprite(sf::Sprite* l_sprite, sf::Color l_color, bool* l_condition);
+
 protected:
 	sf::Sprite m_sprite;
 	sf::IntRect m_textureRect;
 
+	sf::Clock m_flashTimer;
+
 	int m_maxHitPoints;
 	int m_hitPoints;
+	bool m_isHurt;
 };

@@ -13,6 +13,8 @@ public:
     void Update(float l_deltaTime);
     void Draw(sf::RenderWindow* l_window);
 
+    void TakeDamage(int l_damage);
+
     void SetIsKilled(bool l_isKilled) { m_isKilled = l_isKilled; }
     bool IsKilled() { return m_isKilled; }
 

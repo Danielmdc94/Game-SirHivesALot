@@ -178,7 +178,6 @@ void Player::Load()
 	m_hitPoints = m_maxHitPoints;
 	m_arrows = 0;
 
-	m_isHurt = false;
 	m_moveDown = false;
 	m_moveLeft = false;
 	m_moveRight = false;
@@ -271,16 +270,12 @@ void Player::Draw(sf::RenderWindow* l_window)
 {
 	if (m_isHurt)
 	{
-		FlashSprite(&m_sprite, sf::Color::Red, &m_isHurt);
-		FlashSprite(&m_currentEquiped.m_currentArmor->m_spriteFeet, sf::Color::Red, &m_isHurt);
+		FlashSprite(&m_currentEquiped.m_currentArmor->m_spriteFeet, sf::Color::Red, nullptr);
 		FlashSprite(&m_currentEquiped.m_currentArmor->m_spriteLegs, sf::Color::Red, nullptr);
 		FlashSprite(&m_currentEquiped.m_currentArmor->m_spriteTorso, sf::Color::Red, nullptr);
 		FlashSprite(&m_currentEquiped.m_currentArmor->m_spriteShoulders, sf::Color::Red, nullptr);
 		FlashSprite(&m_currentEquiped.m_currentArmor->m_spriteHead, sf::Color::Red, nullptr);
 	}
-		
-	
-
 	Character::Draw(l_window);
 	DrawEquiped();
 }
@@ -408,31 +403,13 @@ void Player::BuyPotion(int l_price)
 
 void Player::TakeDamage(int l_damage)
 {
-	if (m_isHurt)
+	if (GetHasShield())
+		l_damage = int(l_damage * 0.5f);
+	if (!Character::TakeDamage(l_damage))
 		return;
-	m_isHurt = true;
-
 	AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
 
 	audioManager->GetResource("HurtFX")->play();
-
-	if (GetHasShield())
-		l_damage = int(l_damage * 0.5f);
-	SetHitpoints(GetHitPoints() - l_damage);
-
-	m_flashTimer.restart();
-}
-
-void Player::FlashSprite(sf::Sprite* l_sprite, sf::Color l_color, bool* l_condition)
-{
-	if (m_flashTimer.getElapsedTime().asSeconds() < 0.05f)
-		l_sprite->setColor(l_color);
-	else
-	{
-		l_sprite->setColor(sf::Color::White);
-		if (l_condition)
-			*l_condition = false;
-	}
 }
 
 void Player::SetGold(int l_gold)

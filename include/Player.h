@@ -81,12 +81,8 @@ public:
 	void BuyPotion(int l_price);
 
 	void TakeDamage(int damage);
-	void FlashSprite(sf::Sprite* l_sprite, sf::Color l_color, bool* l_condition);
 
 private:
-
-	bool m_isHurt;
-	sf::Clock m_flashTimer;
 
 	Equiped m_currentEquiped;
 
