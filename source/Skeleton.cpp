@@ -87,7 +87,7 @@ void Skeleton::Update(float l_deltaTime)
 	{
 		AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
 		audioManager->GetResource("SkeletonDeathFX")->play();
-		setIsKilled(true);
+		SetIsKilled(true);
 		MarkForDeletion();
 		player->SetGold(player->GetGold() + 1);
 		return;
@@ -101,7 +101,7 @@ void Skeleton::Update(float l_deltaTime)
 			AudioManager* audioManager = m_entityManager->GetContext()->m_audioManager;
 			audioManager->GetResource("SkeletonDeathFX")->play();
 			player->SetGold(player->GetGold() + 1);
-			setIsKilled(true);
+			SetIsKilled(true);
 			MarkForDeletion();
 			arrow->MarkForDeletion();
 			break;
@@ -110,12 +110,8 @@ void Skeleton::Update(float l_deltaTime)
 
 	if (m_boxCollider.collidesWith(player->GetBoxCollider()))
 	{
-		player->TriggerFlash(0.1f);
-		if (player->GetHasShield())
-			player->SetHitpoints(player->GetHitPoints() - 20);
-		else
-			player->SetHitpoints(player->GetHitPoints() - 40);
-		setIsKilled(true);
+		player->TakeDamage(40);
+		SetIsKilled(true);
 		MarkForDeletion();
 	}	
 

@@ -8,8 +8,6 @@ enum class EntityType { Base, Player, Arrow, Skeleton};
 
 enum class EntityState { Idle, Moving };
 
-enum class TileType { Empty, Block, Spawn, Warp};
-
 enum class Direction { Up, Down, Left, Right };
 
 class EntityManager;

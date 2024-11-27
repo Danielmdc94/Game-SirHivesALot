@@ -80,11 +80,12 @@ public:
 	void BuyShield(int l_price);
 	void BuyPotion(int l_price);
 
-	void TriggerFlash(float duration);
+	void TakeDamage(int damage);
+	void FlashSprite(sf::Sprite* l_sprite, sf::Color l_color, bool* l_condition);
 
 private:
 
-	bool m_isFlashing;
+	bool m_isHurt;
 	sf::Clock m_flashTimer;
 
 	Equiped m_currentEquiped;
