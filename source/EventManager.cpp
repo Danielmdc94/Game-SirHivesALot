@@ -110,6 +110,8 @@ void EventManager::HandleGameEvents(sf::Event l_event)
 			player->SetIsRunning(true);
 		if (l_event.key.code == sf::Keyboard::E)
 			player->SwitchWeapon();
+		if (l_event.key.code == sf::Keyboard::O)
+			player->SetGold(player->GetGold() + 10);
 		break;
 
 	case sf::Event::KeyReleased:
@@ -162,9 +164,7 @@ void EventManager::HandleGameOverEvents(sf::Event l_event)
 	switch (l_event.type)
 	{
 	case sf::Event::KeyPressed:
-		if (l_event.key.code == sf::Keyboard::F4)
-			break;
-		else if (l_event.key.code == sf::Keyboard::Space)
+		if (l_event.key.code == sf::Keyboard::Space)
 			currentStatePtr->Restart();
 		break;
 

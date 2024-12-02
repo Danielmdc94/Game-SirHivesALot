@@ -23,8 +23,6 @@ struct Armor
 	sf::Sprite m_spriteShoulders;
 	sf::Sprite m_spriteLegs;
 	sf::Sprite m_spriteFeet;
-
-	float m_damageReduction;
 };
 
 struct Weapon
@@ -37,7 +35,7 @@ struct Weapon
 
 struct Equiped
 {
-	Armor* m_currentArmor;
+	Armor m_currentArmor;
 	Weapon* m_currentWeapon;
 	Weapon* m_currentShield;
 	bool m_hasShield;
@@ -61,6 +59,7 @@ public:
 	Rectangle GetSpearCollider() { return m_spearCollider; };
 	int GetGold();
 	int GetArrows();
+	void LoadArmor();
 	bool GetHasShield() { return m_currentEquiped.m_hasShield; };
 
 	void SetMoveUp(bool l_moving);
@@ -85,11 +84,6 @@ public:
 private:
 
 	Equiped m_currentEquiped;
-
-	Armor m_noneArmor;
-	Armor m_lightArmor;
-	Armor m_mediumArmor;
-	Armor m_heavyArmor;
 
 	Rectangle m_spearCollider;
 

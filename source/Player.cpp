@@ -33,20 +33,6 @@ void Player::Load()
 	m_textureRect = sf::IntRect(0, m_size.y * 2, m_size.x, m_size.y);
 
 	textureManager->RequireResource("Player");
-	textureManager->RequireResource("FeetHeavy");
-	textureManager->RequireResource("FeetLight");
-	textureManager->RequireResource("HeadHeavy");
-	textureManager->RequireResource("HeadLight");
-	textureManager->RequireResource("HeadMedium");
-	textureManager->RequireResource("HeadNone");
-	textureManager->RequireResource("LegsHeavy");
-	textureManager->RequireResource("LegsLight");
-	textureManager->RequireResource("ShouldersHeavy");
-	textureManager->RequireResource("ShouldersLight");
-	textureManager->RequireResource("TorsoHeavy");
-	textureManager->RequireResource("TorsoLight");
-	textureManager->RequireResource("TorsoMedium");
-	textureManager->RequireResource("TorsoNone");
 	textureManager->RequireResource("WeaponSpear");
 	textureManager->RequireResource("WeaponShield");
 	textureManager->RequireResource("WeaponBow");
@@ -56,94 +42,6 @@ void Player::Load()
 	m_sprite.setTextureRect(m_textureRect);
 	m_sprite.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
 	this->SetPosition(viewSpace.width / 2.0f, viewSpace.height / 2.0f);
-
-	//-----None Armor
-	m_noneArmor.m_type = ArmorType::None;
-	m_noneArmor.m_spriteHead.setTexture(*textureManager->GetResource("HeadNone"));
-	m_noneArmor.m_spriteHead.setTextureRect(m_textureRect);
-	m_noneArmor.m_spriteHead.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_noneArmor.m_spriteTorso.setTexture(*textureManager->GetResource("TorsoLight"));
-	m_noneArmor.m_spriteTorso.setTextureRect(m_textureRect);
-	m_noneArmor.m_spriteTorso.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-	
-	m_noneArmor.m_spriteLegs.setTexture(*textureManager->GetResource("LegsLight"));
-	m_noneArmor.m_spriteLegs.setTextureRect(m_textureRect);
-	m_noneArmor.m_spriteLegs.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-	
-	m_noneArmor.m_spriteFeet.setTexture(*textureManager->GetResource("FeetLight"));
-	m_noneArmor.m_spriteFeet.setTextureRect(m_textureRect);
-	m_noneArmor.m_spriteFeet.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-
-	//-----Light Armor
-	m_lightArmor.m_type = ArmorType::Light;
-	m_lightArmor.m_spriteHead.setTexture(*textureManager->GetResource("HeadLight"));
-	m_lightArmor.m_spriteHead.setTextureRect(m_textureRect);
-	m_lightArmor.m_spriteHead.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_lightArmor.m_spriteShoulders.setTexture(*textureManager->GetResource("ShouldersLight"));
-	m_lightArmor.m_spriteShoulders.setTextureRect(m_textureRect);
-	m_lightArmor.m_spriteShoulders.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_lightArmor.m_spriteTorso.setTexture(*textureManager->GetResource("TorsoLight"));
-	m_lightArmor.m_spriteTorso.setTextureRect(m_textureRect);
-	m_lightArmor.m_spriteTorso.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_lightArmor.m_spriteLegs.setTexture(*textureManager->GetResource("LegsLight"));
-	m_lightArmor.m_spriteLegs.setTextureRect(m_textureRect);
-	m_lightArmor.m_spriteLegs.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_lightArmor.m_spriteFeet.setTexture(*textureManager->GetResource("FeetLight"));
-	m_lightArmor.m_spriteFeet.setTextureRect(m_textureRect);
-	m_lightArmor.m_spriteFeet.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-	//-----------------
-
-	//-----Medium Armor
-	m_mediumArmor.m_type = ArmorType::Medium;
-	m_mediumArmor.m_spriteHead.setTexture(*textureManager->GetResource("HeadMedium"));
-	m_mediumArmor.m_spriteHead.setTextureRect(m_textureRect);
-	m_mediumArmor.m_spriteHead.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_mediumArmor.m_spriteShoulders.setTexture(*textureManager->GetResource("ShouldersLight"));
-	m_mediumArmor.m_spriteShoulders.setTextureRect(m_textureRect);
-	m_mediumArmor.m_spriteShoulders.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_mediumArmor.m_spriteTorso.setTexture(*textureManager->GetResource("TorsoMedium"));
-	m_mediumArmor.m_spriteTorso.setTextureRect(m_textureRect);
-	m_mediumArmor.m_spriteTorso.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_mediumArmor.m_spriteLegs.setTexture(*textureManager->GetResource("LegsLight"));
-	m_mediumArmor.m_spriteLegs.setTextureRect(m_textureRect);
-	m_mediumArmor.m_spriteLegs.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_mediumArmor.m_spriteFeet.setTexture(*textureManager->GetResource("FeetHeavy"));
-	m_mediumArmor.m_spriteFeet.setTextureRect(m_textureRect);
-	m_mediumArmor.m_spriteFeet.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-	//-----------------
-
-	//-----Heavy Armor
-	m_heavyArmor.m_type = ArmorType::Heavy;
-	m_heavyArmor.m_spriteHead.setTexture(*textureManager->GetResource("HeadHeavy"));
-	m_heavyArmor.m_spriteHead.setTextureRect(m_textureRect);
-	m_heavyArmor.m_spriteHead.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_heavyArmor.m_spriteShoulders.setTexture(*textureManager->GetResource("ShouldersHeavy"));
-	m_heavyArmor.m_spriteShoulders.setTextureRect(m_textureRect);
-	m_heavyArmor.m_spriteShoulders.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_heavyArmor.m_spriteTorso.setTexture(*textureManager->GetResource("TorsoHeavy"));
-	m_heavyArmor.m_spriteTorso.setTextureRect(m_textureRect);
-	m_heavyArmor.m_spriteTorso.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_heavyArmor.m_spriteLegs.setTexture(*textureManager->GetResource("LegsHeavy"));
-	m_heavyArmor.m_spriteLegs.setTextureRect(m_textureRect);
-	m_heavyArmor.m_spriteLegs.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-
-	m_heavyArmor.m_spriteFeet.setTexture(*textureManager->GetResource("FeetHeavy"));
-	m_heavyArmor.m_spriteFeet.setTextureRect(m_textureRect);
-	m_heavyArmor.m_spriteFeet.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
-	//-----------------
 
 	//-----Spear Weapon
 	m_spearWeapon.m_type = WeaponType::Spear;
@@ -167,11 +65,12 @@ void Player::Load()
 	m_shieldWeapon.m_sprite.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
 	//-----------------
 
-	m_currentEquiped.m_currentArmor = &m_noneArmor;
+	m_currentEquiped.m_currentArmor.m_type = ArmorType::None;
 	m_currentEquiped.m_currentWeapon = &m_spearWeapon;
 	m_currentEquiped.m_currentShield = &m_shieldWeapon;
 	m_currentEquiped.m_hasShield = false;
 	m_currentEquiped.m_hasBow = false;
+	LoadArmor();
 
 	m_gold = 0;
 	m_maxHitPoints = 100;
@@ -189,11 +88,11 @@ void Player::UpdateEquiped()
 {
 	sf::RenderWindow* window = m_entityManager->GetContext()->m_window->GetRenderWindow();
 
-	m_currentEquiped.m_currentArmor->m_spriteHead.setPosition(m_position);
-	m_currentEquiped.m_currentArmor->m_spriteTorso.setPosition(m_position);
-	m_currentEquiped.m_currentArmor->m_spriteShoulders.setPosition(m_position);
-	m_currentEquiped.m_currentArmor->m_spriteLegs.setPosition(m_position);
-	m_currentEquiped.m_currentArmor->m_spriteFeet.setPosition(m_position);
+	m_currentEquiped.m_currentArmor.m_spriteHead.setPosition(m_position);
+	m_currentEquiped.m_currentArmor.m_spriteTorso.setPosition(m_position);
+	m_currentEquiped.m_currentArmor.m_spriteShoulders.setPosition(m_position);
+	m_currentEquiped.m_currentArmor.m_spriteLegs.setPosition(m_position);
+	m_currentEquiped.m_currentArmor.m_spriteFeet.setPosition(m_position);
 
 	m_currentEquiped.m_currentShield->m_sprite.setPosition(m_position);
 
@@ -235,11 +134,11 @@ void Player::UpdateEquiped()
 void Player::DrawEquiped()
 {
 	sf::RenderWindow* window = m_entityManager->GetContext()->m_window->GetRenderWindow();
-	window->draw(m_currentEquiped.m_currentArmor->m_spriteHead);
-	window->draw(m_currentEquiped.m_currentArmor->m_spriteTorso);
-	window->draw(m_currentEquiped.m_currentArmor->m_spriteShoulders);
-	window->draw(m_currentEquiped.m_currentArmor->m_spriteLegs);
-	window->draw(m_currentEquiped.m_currentArmor->m_spriteFeet);
+	window->draw(m_currentEquiped.m_currentArmor.m_spriteHead);
+	window->draw(m_currentEquiped.m_currentArmor.m_spriteTorso);
+	window->draw(m_currentEquiped.m_currentArmor.m_spriteShoulders);
+	window->draw(m_currentEquiped.m_currentArmor.m_spriteLegs);
+	window->draw(m_currentEquiped.m_currentArmor.m_spriteFeet);
 
 	if (m_currentEquiped.m_hasShield && m_currentEquiped.m_currentWeapon->m_type != WeaponType::Bow)
 		window->draw(m_currentEquiped.m_currentShield->m_sprite);
@@ -270,11 +169,11 @@ void Player::Draw(sf::RenderWindow* l_window)
 {
 	if (m_isHurt)
 	{
-		FlashSprite(&m_currentEquiped.m_currentArmor->m_spriteFeet, sf::Color::Red, nullptr);
-		FlashSprite(&m_currentEquiped.m_currentArmor->m_spriteLegs, sf::Color::Red, nullptr);
-		FlashSprite(&m_currentEquiped.m_currentArmor->m_spriteTorso, sf::Color::Red, nullptr);
-		FlashSprite(&m_currentEquiped.m_currentArmor->m_spriteShoulders, sf::Color::Red, nullptr);
-		FlashSprite(&m_currentEquiped.m_currentArmor->m_spriteHead, sf::Color::Red, nullptr);
+		FlashSprite(&m_currentEquiped.m_currentArmor.m_spriteFeet, sf::Color::Red, nullptr);
+		FlashSprite(&m_currentEquiped.m_currentArmor.m_spriteLegs, sf::Color::Red, nullptr);
+		FlashSprite(&m_currentEquiped.m_currentArmor.m_spriteTorso, sf::Color::Red, nullptr);
+		FlashSprite(&m_currentEquiped.m_currentArmor.m_spriteShoulders, sf::Color::Red, nullptr);
+		FlashSprite(&m_currentEquiped.m_currentArmor.m_spriteHead, sf::Color::Red, nullptr);
 	}
 	Character::Draw(l_window);
 	DrawEquiped();
@@ -350,19 +249,21 @@ void Player::BuyArmor(int l_price)
 {
 	if (l_price <= m_gold)
 	{
-		if (m_currentEquiped.m_currentArmor->m_type == ArmorType::None)
-			m_currentEquiped.m_currentArmor = &m_lightArmor;
+		if (m_currentEquiped.m_currentArmor.m_type == ArmorType::None)
+			m_currentEquiped.m_currentArmor.m_type = ArmorType::Light;
 
-		else if (m_currentEquiped.m_currentArmor->m_type == ArmorType::Light)
-			m_currentEquiped.m_currentArmor = &m_mediumArmor;
+		else if (m_currentEquiped.m_currentArmor.m_type == ArmorType::Light)
+			m_currentEquiped.m_currentArmor.m_type = ArmorType::Medium;
 
-		else if (m_currentEquiped.m_currentArmor->m_type == ArmorType::Medium)
-			m_currentEquiped.m_currentArmor = &m_heavyArmor;
+		else if (m_currentEquiped.m_currentArmor.m_type == ArmorType::Medium)
+			m_currentEquiped.m_currentArmor.m_type = ArmorType::Heavy;
 
 		else
 			return;
+
+		LoadArmor();
 		SetGold(m_gold - l_price);;
-		SetMaxHitpoints(m_maxHitPoints + 25 * int(m_currentEquiped.m_currentArmor->m_type));
+		SetMaxHitpoints(m_maxHitPoints + 20 * int(m_currentEquiped.m_currentArmor.m_type));
 	}
 }
 
@@ -431,3 +332,72 @@ int Player::GetArrows()
 	return m_arrows;
 }
 
+
+void Player::LoadArmor()
+{
+
+	TextureManager* textureManager = m_entityManager->GetContext()->m_textureManager;
+
+	switch (m_currentEquiped.m_currentArmor.m_type)
+	{
+	case ArmorType::None:
+		textureManager->RequireResource("HeadNone");
+		textureManager->RequireResource("TorsoLight");
+		textureManager->RequireResource("LegsLight");
+		textureManager->RequireResource("FeetLight");
+		m_currentEquiped.m_currentArmor.m_spriteHead.setTexture(*textureManager->GetResource("HeadNone"));
+		m_currentEquiped.m_currentArmor.m_spriteTorso.setTexture(*textureManager->GetResource("TorsoLight"));
+		m_currentEquiped.m_currentArmor.m_spriteLegs.setTexture(*textureManager->GetResource("LegsLight"));
+		m_currentEquiped.m_currentArmor.m_spriteFeet.setTexture(*textureManager->GetResource("FeetLight"));
+		break;
+	case ArmorType::Light:
+		textureManager->RequireResource("HeadLight");
+		textureManager->RequireResource("ShouldersLight");
+		textureManager->RequireResource("TorsoLight");
+		textureManager->RequireResource("LegsLight");
+		textureManager->RequireResource("FeetLight");
+		m_currentEquiped.m_currentArmor.m_spriteHead.setTexture(*textureManager->GetResource("HeadLight"));
+		m_currentEquiped.m_currentArmor.m_spriteShoulders.setTexture(*textureManager->GetResource("ShouldersLight"));
+		m_currentEquiped.m_currentArmor.m_spriteTorso.setTexture(*textureManager->GetResource("TorsoLight"));
+		m_currentEquiped.m_currentArmor.m_spriteLegs.setTexture(*textureManager->GetResource("LegsLight"));
+		m_currentEquiped.m_currentArmor.m_spriteFeet.setTexture(*textureManager->GetResource("FeetLight"));
+		break;
+	case ArmorType::Medium:
+		textureManager->RequireResource("HeadMedium");
+		textureManager->RequireResource("ShouldersLight");
+		textureManager->RequireResource("TorsoMedium");
+		textureManager->RequireResource("LegsLight");
+		textureManager->RequireResource("FeetHeavy");
+		m_currentEquiped.m_currentArmor.m_spriteHead.setTexture(*textureManager->GetResource("HeadMedium"));
+		m_currentEquiped.m_currentArmor.m_spriteShoulders.setTexture(*textureManager->GetResource("ShouldersLight"));
+		m_currentEquiped.m_currentArmor.m_spriteTorso.setTexture(*textureManager->GetResource("TorsoMedium"));
+		m_currentEquiped.m_currentArmor.m_spriteLegs.setTexture(*textureManager->GetResource("LegsLight"));
+		m_currentEquiped.m_currentArmor.m_spriteFeet.setTexture(*textureManager->GetResource("FeetHeavy"));
+		break;
+	case ArmorType::Heavy:
+		textureManager->RequireResource("HeadHeavy");
+		textureManager->RequireResource("ShouldersHeavy");
+		textureManager->RequireResource("TorsoHeavy");
+		textureManager->RequireResource("LegsHeavy");
+		textureManager->RequireResource("FeetHeavy");
+		m_currentEquiped.m_currentArmor.m_spriteHead.setTexture(*textureManager->GetResource("HeadHeavy"));
+		m_currentEquiped.m_currentArmor.m_spriteShoulders.setTexture(*textureManager->GetResource("ShouldersHeavy"));
+		m_currentEquiped.m_currentArmor.m_spriteTorso.setTexture(*textureManager->GetResource("TorsoHeavy"));
+		m_currentEquiped.m_currentArmor.m_spriteLegs.setTexture(*textureManager->GetResource("LegsHeavy"));
+		m_currentEquiped.m_currentArmor.m_spriteFeet.setTexture(*textureManager->GetResource("FeetHeavy"));
+		break;
+
+	default:
+		return;
+	}
+	m_currentEquiped.m_currentArmor.m_spriteHead.setTextureRect(m_textureRect);
+	m_currentEquiped.m_currentArmor.m_spriteHead.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
+	m_currentEquiped.m_currentArmor.m_spriteShoulders.setTextureRect(m_textureRect);
+	m_currentEquiped.m_currentArmor.m_spriteShoulders.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
+	m_currentEquiped.m_currentArmor.m_spriteTorso.setTextureRect(m_textureRect);
+	m_currentEquiped.m_currentArmor.m_spriteTorso.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
+	m_currentEquiped.m_currentArmor.m_spriteLegs.setTextureRect(m_textureRect);
+	m_currentEquiped.m_currentArmor.m_spriteLegs.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
+	m_currentEquiped.m_currentArmor.m_spriteFeet.setTextureRect(m_textureRect);
+	m_currentEquiped.m_currentArmor.m_spriteFeet.setOrigin(m_textureRect.width / 2.0f, m_textureRect.height / 2.0f);
+}

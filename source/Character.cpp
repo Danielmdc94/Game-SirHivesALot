@@ -98,7 +98,7 @@ bool Character::TakeDamage(int l_damage)
 
 void Character::FlashSprite(sf::Sprite* l_sprite, sf::Color l_color, bool* l_condition)
 {
-	if (m_flashTimer.getElapsedTime().asSeconds() < 0.05f)
+	if (m_flashTimer.getElapsedTime().asSeconds() < 0.1f)
 		l_sprite->setColor(l_color);
 	else
 	{
